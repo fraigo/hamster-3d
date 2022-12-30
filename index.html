@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Hamster</title>
+    <meta name="description" content="Hello, WebVR! • A-Frame">
+    <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
+    <script src="https://unpkg.com/aframe-physics-system@1.4.0/dist/aframe-physics-system.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/aframe-extras@6.1.1/dist/aframe-extras.min.js"></script>
+  </head>
+  <body>
+    <a-scene id="scene" background="color: #000000">
+      <a-assets>
+        <a-asset-item id="hamster" src="models/hamster2/scene.gltf"></a-asset-item>
+        <a-asset-item id="table" src="models/folding_table/scene.gltf"></a-asset-item>
+      </a-assets>
+      <a-camera wasd-controls-enabled="false"></a-camera>
+      <a-entity light="type: ambient; color: #fff"></a-entity>
+      <a-entity light="type: point; intensity: 1.0; distance: 100; decay: 1; castShadow:true; "  position="0 4 2"></a-entity>
+      <a-entity id="hamster1" scale="1 1 1" rotation="0 20 0" position="0 0 -8" >
+        <a-entity scale="0.1 0.1 0.1" rotation="0 0 0" position="0 0 0" color="#FFC65D" gltf-model="#hamster" animation-mixer></a-entity>
+      </a-entity>
+      <a-entity scale="8 8 8" rotation="0 0 0" position="0 -3.2 -8" gltf-model="#table"></a-entity>
+
+    </a-scene>
+    <script>
+      var currentKey = null;
+      var currentEvent = null
+      window.addEventListener("keydown",function(e){
+        var key = e.keyCode;
+        currentKey = key
+        clearTimeout(currentEvent)
+        currentEvent = setTimeout(function(){
+          currentKey = null
+        },100)
+      })
+      var hamster = document.querySelector("#hamster1")
+      function moveItem(){
+        if (currentKey){
+          console.log('key',currentKey)
+          if (currentKey==68){
+            hamster.object3D.rotation.y+=0.1
+          }
+          if (currentKey==65){
+            hamster.object3D.rotation.y-=0.1
+          }
+          if (currentKey==87){
+            hamster.object3D.rotation.z+=0.1
+          }
+          if (currentKey==83){
+            hamster.object3D.rotation.z-=0.1
+          }
+        }
+        requestAnimationFrame(moveItem)
+      }
+      requestAnimationFrame(moveItem)
+        
+    </script>
+  </body>
+</html>
