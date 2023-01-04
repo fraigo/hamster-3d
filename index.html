@@ -14,34 +14,51 @@
         <a-asset-item id="hamster" src="models/hamster2/scene.gltf"></a-asset-item>
         <a-asset-item id="hamster-white" src="models/hamster-white/scene.gltf"></a-asset-item>
         <a-asset-item id="hamster-black" src="models/hamster-black/scene.gltf"></a-asset-item>
+        <a-asset-item id="hamster-brown" src="models/hamster-brown/scene.gltf"></a-asset-item>
         <a-asset-item id="table" src="models/folding_table/scene.gltf"></a-asset-item>
         <img id="sky" src="img/background.jpg"></img>
       </a-assets>
-      <a-camera wasd-controls-enabled="false"></a-camera>
+      <a-camera id="camera" position="0 -2 0" wasd-controls-enabled="false"></a-camera>
       <a-sky src="#sky"></a-sky>
       <a-entity light="type: ambient; color: #fff"></a-entity>
       <a-entity light="type: point; intensity: 1.0; distance: 100; decay: 1; castShadow:true; "  position="0 4 2"></a-entity>
-      <a-entity id="hamster1" scale="1 1 1" rotation="0 20 0" position="-2 -3 -8" >
-        <a-entity scale="0.05 0.05 0.05" rotation="0 0 0" position="0 0 0" color="#FFC65D" gltf-model="#hamster" animation-mixer></a-entity>
+      <a-entity id="hamster1" scale="1 1 1" rotation="0 20 0" position="-4 -4.5 -8" >
+        <a-entity scale="0.04 0.04 0.04" rotation="0 0 0" gltf-model="#hamster-white" animation-mixer></a-entity>
+        <a-cylinder color="#222" position="0 0 0" height="0.1" radius="0.9"></a-cylinder>
       </a-entity>
-      <a-entity id="hamster2" scale="1 1 1" rotation="0 20 0" position="-4 -3 -8" >
-        <a-entity scale="0.05 0.05 0.05" rotation="0 0 0" position="0 0 0" color="#FFC65D" gltf-model="#hamster-white" animation-mixer></a-entity>
+      <a-entity id="hamster2" scale="1 1 1" rotation="0 20 0" position="-2 -4.5 -8" >
+        <a-entity scale="0.04 0.04 0.04" rotation="0 0 0" gltf-model="#hamster" animation-mixer></a-entity>
+        <a-cylinder color="#222" position="0 0 0" height="0.1" radius="0.9"></a-cylinder>
       </a-entity>
-      <a-entity id="hamster3" scale="1 1 1" rotation="0 20 0" position="0 -3 -8" >
-        <a-entity scale="0.05 0.05 0.05" rotation="0 0 0" position="0 0 0" color="#FFC65D" gltf-model="#hamster-black" animation-mixer></a-entity>
+      <a-entity id="hamster3" scale="1 1 1" rotation="0 20 0" position="0 -4.5 -8" >
+        <a-entity scale="0.04 0.04 0.04" rotation="0 0 0" gltf-model="#hamster-brown" animation-mixer></a-entity>
+        <a-cylinder color="#222" position="0 0 0" height="0.1" radius="0.9"></a-cylinder>
       </a-entity>
-      <a-entity scale="8 8 8" rotation="0 0 0" position="-2 -6.2 -8" gltf-model="#table"></a-entity>
-      <a-entity scale="0.75 0.75 0.75" id="light" light="color: #fff; intensity: 1" position="0 1 -7"></a-entity>
+      <a-entity id="hamster4" scale="1 1 1" rotation="0 20 0" position="2 -4.5 -8" >
+        <a-entity scale="0.04 0.04 0.04" rotation="0 0 0" gltf-model="#hamster-black" animation-mixer></a-entity>
+        <a-cylinder color="#222" position="0 0 0" height="0.1" radius="0.9"></a-cylinder>
+      </a-entity>
+      <a-entity scale="8 8 8" rotation="0 8 0" position="-2 -8 -8" gltf-model="#table"></a-entity>
+      <a-cylinder id="light" color="#333" position="-4 -4.5 -8" height="0.12" radius="1"></a-cylinder>
     </a-scene>
     <script>
       var currentKey = null;
       var items=[
         "#hamster1",
         "#hamster2",
-        "#hamster3"
+        "#hamster3",
+        "#hamster4"
       ]
       var currentEvent = null
       var currentItem = 0;
+      var camera = document.querySelector('#camera')
+      var light = document.querySelector('#light')
+      var hamster = document.querySelector(items[currentItem])
+      
+      function selectItem(name){
+        hamster = document.querySelector(items[currentItem])
+        light.object3D.position.x=hamster.object3D.position.x
+      }
       window.addEventListener("keydown",function(e){
         var key = e.keyCode;
         currentKey = key
@@ -54,13 +71,10 @@
           if (currentItem==items.length){
             currentItem=0;
           }
-          hamster = document.querySelector(items[currentItem])
-          light.object3D.position.x=hamster.object3D.position.x
+          selectItem(items[currentItem])
         }
       })
-      var light = document.querySelector('#light')
-      var hamster = document.querySelector(items[currentItem])
-      light.object3D.position.x=hamster.object3D.position.x
+      selectItem(items[currentItem])
       
       function moveItem(){
         if (currentKey){
