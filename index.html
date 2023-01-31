@@ -7,6 +7,7 @@
     <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
     <script src="https://unpkg.com/aframe-physics-system@1.4.0/dist/aframe-physics-system.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/aframe-extras@6.1.1/dist/aframe-extras.min.js"></script>
+    <script src="https://cdn.rawgit.com/elbobo/aframe-multisrc-component/b6d23310/dist/0.3/aframe-multisrc-component.js"></script>
   </head>
   <body>
     <a-scene id="scene" background="color: #000000">
@@ -17,29 +18,52 @@
         <a-asset-item id="hamster-brown" src="models/hamster-brown/scene.gltf"></a-asset-item>
         <a-asset-item id="table" src="models/folding_table/scene.gltf"></a-asset-item>
         <img id="sky" src="img/background.jpg"></img>
+        <img id="dice1" src="img/dice1.png"></img>
+        <img id="dice2" src="img/dice2.png"></img>
+        <img id="dice3" src="img/dice3.png"></img>
+        <img id="dice4" src="img/dice4.png"></img>
+        <img id="dice5" src="img/dice5.png"></img>
+        <img id="dice6" src="img/dice6.png"></img>
+        <img id="grass" src="img/grass.jpg"></img>
       </a-assets>
       <a-camera id="camera" position="0 -2 0" wasd-controls-enabled="false"></a-camera>
       <a-sky src="#sky"></a-sky>
       <a-entity light="type: ambient; color: #fff"></a-entity>
       <a-entity light="type: point; intensity: 1.0; distance: 100; decay: 1; castShadow:true; "  position="0 4 2"></a-entity>
-      <a-entity id="hamster1" scale="1 1 1" rotation="0 20 0" position="-4 -4.5 -8" >
-        <a-entity scale="0.04 0.04 0.04" rotation="0 0 0" gltf-model="#hamster-white" animation-mixer></a-entity>
-        <a-cylinder color="#222" position="0 0 0" height="0.1" radius="0.9"></a-cylinder>
+      <a-entity id="hamster1" scale="1 1 1" rotation="0 20 0" position="-3 -4.5 -8" >
+        <a-entity class="body" scale="0.04 0.04 0.04" rotation="0 0 0" gltf-model="#hamster-white" animation-mixer></a-entity>
+        <a-cylinder color="#dda" position="0 0 0" height="0.1" radius="0.9"></a-cylinder>
+        <a-box class="result" color="#aaa" rotation="0 0 0" position="0 3.5 0" src="" depth="0.1" height="1" width="1"></a-box>
       </a-entity>
-      <a-entity id="hamster2" scale="1 1 1" rotation="0 20 0" position="-2 -4.5 -8" >
-        <a-entity scale="0.04 0.04 0.04" rotation="0 0 0" gltf-model="#hamster" animation-mixer></a-entity>
-        <a-cylinder color="#222" position="0 0 0" height="0.1" radius="0.9"></a-cylinder>
+      <a-entity id="hamster2" scale="1 1 1" rotation="0 20 0" position="-1 -4.5 -8" >
+        <a-entity class="body" scale="0.04 0.04 0.04" rotation="0 0 0" gltf-model="#hamster" animation-mixer></a-entity>
+        <a-cylinder color="#dda" position="0 0 0" height="0.1" radius="0.9"></a-cylinder>
+        <a-box class="result" color="#aaa" rotation="0 0 0" position="0 3.5 0" src="" depth="0.1" height="1" width="1"></a-box>
       </a-entity>
-      <a-entity id="hamster3" scale="1 1 1" rotation="0 20 0" position="0 -4.5 -8" >
-        <a-entity scale="0.04 0.04 0.04" rotation="0 0 0" gltf-model="#hamster-brown" animation-mixer></a-entity>
-        <a-cylinder color="#222" position="0 0 0" height="0.1" radius="0.9"></a-cylinder>
+      <a-entity id="hamster3" scale="1 1 1" rotation="0 20 0" position="1 -4.5 -8" >
+        <a-entity class="body" scale="0.04 0.04 0.04" rotation="0 0 0" gltf-model="#hamster-brown" animation-mixer></a-entity>
+        <a-cylinder color="#dda" position="0 0 0" height="0.1" radius="0.9"></a-cylinder>
+        <a-box class="result" color="#aaa" rotation="0 0 0" position="0 3.5 0" src="" depth="0.1" height="1" width="1"></a-box>
       </a-entity>
-      <a-entity id="hamster4" scale="1 1 1" rotation="0 20 0" position="2 -4.5 -8" >
-        <a-entity scale="0.04 0.04 0.04" rotation="0 0 0" gltf-model="#hamster-black" animation-mixer></a-entity>
-        <a-cylinder color="#222" position="0 0 0" height="0.1" radius="0.9"></a-cylinder>
+      <a-entity id="hamster4" scale="1 1 1" rotation="0 20 0" position="3 -4.5 -8" >
+        <a-entity class="body" scale="0.04 0.04 0.04" rotation="0 0 0" gltf-model="#hamster-black" animation-mixer></a-entity>
+        <a-cylinder color="#dda" position="0 0 0" height="0.1" radius="0.9"></a-cylinder>
+        <a-box class="result" color="#aaa" rotation="0 0 0" position="0 3.5 0" src="" depth="0.1" height="1" width="1"></a-box>
       </a-entity>
-      <a-entity scale="8 8 8" rotation="0 8 0" position="-2 -8 -8" gltf-model="#table"></a-entity>
-      <a-cylinder id="light" color="#333" position="-4 -4.5 -8" height="0.12" radius="1"></a-cylinder>
+      <a-entity id="floor1" rotation="0 0 0" position="0 -4.75 -10.5">
+        <a-box color="#080" depth="8" height="0.5" width="9" src="#grass"></a-box>
+      </a-entity>
+      <a-entity id="floor2" rotation="0 0 0" position="0 -4.75 -18.5">
+        <a-box color="#090" depth="8" height="0.5" width="9" src="#grass"></a-box>
+      </a-entity>
+      <a-entity id="floor3" rotation="0 0 0" position="0 -4.75 -26.5">
+        <a-box color="#0A0" depth="8" height="0.5" width="9" src="#grass"></a-box>
+      </a-entity>
+      <a-cylinder id="light" color="gold" position="-3 -4.5 -8" height="0.12" radius="1"></a-cylinder>
+      <a-entity id="dice" rotation="0 0 0" position="-3 -1 -8">
+        <a-box color="#866"  depth="1" height="1" width="1" 
+          multisrc="srcs:#dice1,#dice2,#dice3,#dice4,#dice5,#dice6"></a-cylinder>
+      </a-entity>
     </a-scene>
     <script>
       var currentKey = null;
@@ -53,11 +77,26 @@
       var currentItem = 0;
       var camera = document.querySelector('#camera')
       var light = document.querySelector('#light')
+      var dice = document.querySelector('#dice')
       var hamster = document.querySelector(items[currentItem])
+      var dice1 = document.querySelector(items[currentItem]+ " .result")
+      var rotating = true
+      var endRotate = null
+      var jumping = false
       
+      function nextItem(){
+        currentItem++
+        if (currentItem==items.length){
+          currentItem=0;
+        }
+        selectItem(items[currentItem])
+        rotating = true
+      }
       function selectItem(name){
         hamster = document.querySelector(items[currentItem])
+        dice1 = document.querySelector(items[currentItem]+ " .result")
         light.object3D.position.x=hamster.object3D.position.x
+        dice.object3D.position.x=hamster.object3D.position.x
       }
       window.addEventListener("keydown",function(e){
         var key = e.keyCode;
@@ -67,23 +106,119 @@
           currentKey = null
         },100)
         if (key==32){
-          currentItem++
-          if (currentItem==items.length){
-            currentItem=0;
-          }
-          selectItem(items[currentItem])
+          //nextItem()
+        }
+        if (key==13 && rotating){
+          rotating = false
+          jumping = true
         }
       })
       selectItem(items[currentItem])
+
+      function rollDice(){
+        var rotate = Math.PI/8
+        dice.object3D.rotation.x+=rotate*Math.round(Math.random())
+        dice.object3D.rotation.y+=rotate*Math.round(Math.random())
+        //dice.object3D.rotation.z+=rotate
+      }
+
+      function section(angle){
+        var rad = angle % (Math.PI*2)
+        return rad / (Math.PI/2)
+      }
+
+      function corrected(angle){
+        var sec = section(angle)
+        var diff = Math.round(sec) - sec
+        var diffAng = diff * (Math.PI/2)
+        return diffAng
+      }
+
+      function correctedRotation(rot){
+        console.log('correct',rot.x,rot.y,rot.z)
+        rot.x += corrected(rot.x)
+        rot.y += corrected(rot.y)
+        rot.z += corrected(rot.z)
+        var result = diceResult(rot)
+        dice1.setAttribute("src","#dice"+result)
+      }
+
+      function diceResult(rot){
+        var rx = Math.round(section(rot.x))
+        var ry = Math.round(section(rot.y))
+        var sides = {
+          '0' : 5,
+          '1' : 2,
+          '2' : 6,
+          '3' : 1,
+          '4' : 5,
+          '10' : 3,
+          '11' : 2,
+          '12' : 4,
+          '13' : 1,
+          '14' : 3,
+          '20' : 6,
+          '21' : 2,
+          '22' : 5,
+          '23' : 1,
+          '24' : 6,
+          '30' : 4,
+          '31' : 2,
+          '32' : 3,
+          '33' : 1,
+          '34' : 4,
+          '40' : 5,
+          '41' : 2,
+          '42' : 6,
+          '43' : 1,
+          '44' : 5,
+        }
+        console.log('dice',sides[rx*10+ry],[rx,ry])
+        return sides[rx*10+ry]
+      }
+
+      function finishDice(){
+        correctedRotation(dice.object3D.rotation)
+      }
+
+      function jump(t1,y0,v0,a,callback,t){
+        if (!t) t=1
+        var y1 = y0 + v0 * t + (1/2) * a * t * t
+        callback(Math.max(y0,y1),t)
+        if (t!=t1 && y0<=y1){
+          setTimeout(function(){
+           jump(t1, y0, v0, a, callback, t+1)
+          },50)
+        }
+      }
+
+      function hamsterJump(){
+        var body = document.querySelector(items[currentItem]+" .body")
+        if (!body.jumping){
+          var y0 = body.object3D.position.y
+          jump(20,body.object3D.position.y,0.9,-0.2,function(y,t){
+            body.object3D.position.y = y
+            if (t==20 || y<=y0 && body.jumping){
+              body.jumping = false
+              jumping = false
+              nextItem()
+            }
+          })
+          body.jumping = true
+          finishDice()
+        }
+      }
       
       function moveItem(){
         if (currentKey){
           console.log('key',currentKey)
           if (currentKey==68){
             hamster.object3D.rotation.y+=0.1
+            dice1.object3D.rotation.y-=0.1
           }
           if (currentKey==65){
             hamster.object3D.rotation.y-=0.1
+            dice1.object3D.rotation.y+=0.1
           }
           if (currentKey==87){
             //hamster.object3D.rotation.z+=0.1
@@ -92,9 +227,18 @@
             //hamster.object3D.rotation.z-=0.1
           }
         }
-        requestAnimationFrame(moveItem)
       }
-      requestAnimationFrame(moveItem)
+      function process(){
+        moveItem()
+        if (rotating){
+          rollDice()
+        }
+        if (jumping){
+          hamsterJump()
+        }
+        requestAnimationFrame(process)
+      }
+      requestAnimationFrame(process)
         
     </script>
   </body>
